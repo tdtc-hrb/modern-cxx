@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>Introduction to Iterators in C++</title></head> <body> <h1>Introduction to Iterators in C++</h1>  <p><em>Reprinted from geeksforgeeks.org</em></p> <p>2026-03-16</p> <p>Written by: xiaobin</p> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>CONTAINER</th><th>TYPES OF ITERATOR SUPPORTED</th></tr></thead><tbody><tr><td>Vector</td><td>Random-Access</td></tr><tr><td>List</td><td>Bidirectional</td></tr><tr><td>Deque</td><td>Random-Access</td></tr><tr><td>Map</td><td>Bidirectional</td></tr><tr><td>Multimap</td><td>Bidirectional</td></tr><tr><td>Set</td><td>Bidirectional</td></tr><tr><td>Multiset</td><td>Bidirectional</td></tr><tr><td>Stack</td><td>No iterator Supported</td></tr><tr><td>Queue</td><td>No iterator Supported</td></tr><tr><td>Priority-Queue</td><td>No iterator Supported</td></tr></tbody></table>
+<h3 id="types-of-iterators">Types of Iterators</h3>
+<p><img src="https://media.geeksforgeeks.org/wp-content/uploads/20260120103112159278/random_access.webp" alt=""></p>
+<h4 id="bidirectional">Bidirectional</h4>
+<p>This iterator can move in both direction either in forward or backward. Alos it’s have all functionalities of forward iterators.</p>
+<h4 id="random-access">Random-Access</h4>
+<p>Random-access iterators are iterators that can be used to access the element at the distance from the element they pointed to.
+And it’s had all functionalities of bidirectional iterators.</p>
+<h4 id="input">Input</h4>
+<p>It is a read only iterator but not modified the value using input iterator.</p>
+<h4 id="output">Output</h4>
+<p>Output iterator is used to assign the values.</p>
+<h4 id="forward">Forward</h4>
+<p>It is the combination of input and output iterator means for both access and assigning the values.</p>
+<h3 id="example">Example</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;vector></span></span>
+<span class="line"><span>using namespace std;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main() {</span></span>
+<span class="line"><span>    vector&#x3C;int> v = {1,2,3,4,5};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Get the iterator of first element of the vector</span></span>
+<span class="line"><span>    vector&#x3C;int>::iterator it = v.begin();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    for (; it != v.end(); ++it) {</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; *it &#x3C;&#x3C; " ";</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/cpp/introduction-iterators-c/">Introduction to Iterators in C++</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

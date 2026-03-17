@@ -1,0 +1,30 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>Interface - C++</title></head> <body> <h1>Interface - C++</h1>  <p><em>C++98 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2022</li>
+</ul>
+<p>An interface class is a class that has no member variables, and where all of the functions are pure virtual!
+Interfaces are useful when you want to define the functionality that derived classes must implement,
+but leave the details of how the derived class implements that functionality entirely up to the derived class.</p>
+<h4 id="enable-c17">enable c++17</h4>
+<p>The default is C++14.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Project -> Properties -> General</span></span></code></pre>
+<p>C++ Language Standard:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>ISO C++17 Standard</span></span></code></pre>
+<p>string_view can only be used in C++17 and above.</p>
+<h3 id="example">example</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;string_view></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class IErrorLog</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    virtual bool openLog(std::string_view filename) = 0;</span></span>
+<span class="line"><span>    virtual bool closeLog() = 0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    virtual bool writeError(std::string_view errorMessage) = 0;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    virtual ~IErrorLog() {} // make a virtual destructor in case we delete an IErrorLog pointer, so the proper derived destructor is called</span></span>
+<span class="line"><span>};</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.learncpp.com/cpp-tutorial/pure-virtual-functions-abstract-base-classes-and-interface-classes/">25.7 — Pure virtual functions, abstract base classes, and interface classes</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/virtual.html">virtual function specifier</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

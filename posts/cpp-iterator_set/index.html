@@ -1,0 +1,39 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>Iterator - C++</title></head> <body> <h1>Iterator - C++</h1>  <p><em>C++11 standard</em></p> <p>2026-03-16</p> <p>Written by: xiaobin</p> <p>They are declared as container_type::iterator it; or auto it = container.begin();.</p>
+<h3 id="set">Set</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;set></span></span>
+<span class="line"><span>using namespace std;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    set&#x3C;int> s = {10, 20, 30, 40, 50};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Iterator to the beginning of the set</span></span>
+<span class="line"><span>    auto it = s.begin();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Iterating through the set</span></span>
+<span class="line"><span>    while (it != s.end())</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        // Accessing value via iterator</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; *it &#x3C;&#x3C; " ";</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>        // Moving to the next element</span></span>
+<span class="line"><span>        ++it;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<ul>
+<li>iterator</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>    set&#x3C;int>::iterator it2 = s.begin();</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    while (it2 != s.end()) {</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; *it2 &#x3C;&#x3C; " ";</span></span>
+<span class="line"><span>        ++it2;</span></span>
+<span class="line"><span>    }</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/cpp/iterators-c-stl">Iterators in C++ STL</a></li>
+<li><a href="https://www.geeksforgeeks.org/cpp/introduction-iterators-c/">Introduction to Iterators in C++</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

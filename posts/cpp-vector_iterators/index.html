@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>The C++ Equivalent to Java’s ArrayList: Exploring std::vector</title></head> <body> <h1>The C++ Equivalent to Java’s ArrayList: Exploring std::vector</h1>  <p><em>C++11 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2013</li>
+</ul>
+<h2 id="iterators">Iterators</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector/begin.html">begin()</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector/end.html">end()</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector/rbegin.html">rbegin()</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector/rend.html">rend()</a></li>
+</ul>
+<h3 id="normal">normal</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include "stdafx.h"</span></span>
+<span class="line"><span>#include &#x3C;algorithm></span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;numeric></span></span>
+<span class="line"><span>#include &#x3C;string></span></span>
+<span class="line"><span>#include &#x3C;vector></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>	std::vector&#x3C;int> nums{ 1, 2, 4, 8, 16 };</span></span>
+<span class="line"><span>	std::vector&#x3C;std::string> fruits{ "orange", "apple", "raspberry" };</span></span>
+<span class="line"><span>	std::vector&#x3C;char> empty;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// Print vector.</span></span>
+<span class="line"><span>	std::for_each(nums.begin(), nums.end(), [](const int n) { std::cout &#x3C;&#x3C; n &#x3C;&#x3C; ' '; });</span></span>
+<span class="line"><span>	std::cout &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// Sums all integers in the vector nums (if any), printing only the result.</span></span>
+<span class="line"><span>	std::cout &#x3C;&#x3C; "Sum of nums: "</span></span>
+<span class="line"><span>		&#x3C;&#x3C; std::accumulate(nums.begin(), nums.end(), 0) &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// Prints the first fruit in the vector fruits, checking if there is any.</span></span>
+<span class="line"><span>	if (!fruits.empty())</span></span>
+<span class="line"><span>		std::cout &#x3C;&#x3C; "First fruit: " &#x3C;&#x3C; *fruits.begin() &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	if (empty.begin() == empty.end())</span></span>
+<span class="line"><span>		std::cout &#x3C;&#x3C; "vector 'empty' is indeed empty.\n";</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>1 2 4 8 16</span></span>
+<span class="line"><span>Sum of nums: 31</span></span>
+<span class="line"><span>First fruit: orange</span></span>
+<span class="line"><span>vector 'empty' is indeed empty.</span></span></code></pre>
+<h3 id="reverse">reverse</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include "stdafx.h"</span></span>
+<span class="line"><span>#include &#x3C;algorithm></span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;numeric></span></span>
+<span class="line"><span>#include &#x3C;string></span></span>
+<span class="line"><span>#include &#x3C;vector></span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    std::vector&#x3C;int> nums{1, 2, 4, 8, 16};</span></span>
+<span class="line"><span>    std::vector&#x3C;std::string> fruits{"orange", "apple", "raspberry"};</span></span>
+<span class="line"><span>    std::vector&#x3C;char> empty;</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    // Print vector.</span></span>
+<span class="line"><span>    std::for_each(nums.rbegin(), nums.rend(), [](const int n) { std::cout &#x3C;&#x3C; n &#x3C;&#x3C; ' '; });</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    // Sums all integers in the vector nums (if any), printing only the result.</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; "Sum of nums: "</span></span>
+<span class="line"><span>              &#x3C;&#x3C; std::accumulate(nums.rbegin(), nums.rend(), 0) &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    // Prints the first fruit in the vector fruits, checking if there is any.</span></span>
+<span class="line"><span>    if (!fruits.empty())</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "First fruit: " &#x3C;&#x3C; *fruits.rbegin() &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    if (empty.rbegin() == empty.rend())</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "vector 'empty' is indeed empty.\n";</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>16 8 4 2 1</span></span>
+<span class="line"><span>Sum of nums: 31</span></span>
+<span class="line"><span>First fruit: raspberry</span></span>
+<span class="line"><span>vector 'empty' is indeed empty.</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://medium.com/@adam.rizk9/the-c-equivalent-to-javas-arraylist-exploring-std-vector-b3a4afc8e9c6">The C++ Equivalent to Java’s ArrayList: Exploring std::vector</a></li>
+<li><a href="https://stackoverflow.com/questions/3971049/whats-the-c-version-of-javas-arraylist">What’s the C++ version of Java’s ArrayList</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/vector.html">std::vector</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>C++ final Specifier</title></head> <body> <h1>C++ final Specifier</h1>  <p><em>C++11 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2013</li>
+</ul>
+<p>In Java, we can use final for a function to make sure that it cannot be overridden.
+We can also use final in Java to make sure that a class cannot be inherited.
+Similarly, the latest C++ standard C++ 11 added final.</p>
+<h3 id="method">method</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include "stdafx.h"</span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>using namespace std;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    virtual void myfun() final</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; "myfun() in Base";</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span>class Derived : public Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    void myfun()</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; "myfun() in Derived\n";</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    Derived d;</span></span>
+<span class="line"><span>    Base &#x26;b = d;</span></span>
+<span class="line"><span>    b.myfun();</span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Error	1	error C3248: 'Base::myfun': function declared as 'final' cannot be overridden by 'Derived::myfun'</span></span>
+<span class="line"><span>c:\users\hp25nov\documents\visual studio 2013\projects\consoleapplication2\consoleapplication2\consoleapplication2.cpp	18	1	ConsoleApplication2</span></span>
+<span class="line"><span></span></span></code></pre>
+<h3 id="class">class</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include "stdafx.h"</span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>class Base final</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Derived : public Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    Derived d;</span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Error	1	error C3246: 'Derived' : cannot inherit from 'Base' as it has been declared as 'final'	</span></span>
+<span class="line"><span>c:\users\hp25nov\documents\visual studio 2013\projects\consoleapplication3\consoleapplication3\consoleapplication3.cpp	11	1	ConsoleApplication3</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.geeksforgeeks.org/cpp/c-final-specifier/">C++ final Specifier</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/final.html">final specifier (since C++11)</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

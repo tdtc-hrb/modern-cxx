@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>hash map - C++</title></head> <body> <h1>hash map - C++</h1>  <p><em>C++11 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2022</li>
+</ul>
+<h3 id="example">example</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;unordered_map></span></span>
+<span class="line"><span>using namespace std;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main() {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Creating an unordered_map with integer</span></span>
+<span class="line"><span>    // keys and string values</span></span>
+<span class="line"><span>    unordered_map&#x3C;int, string> um =</span></span>
+<span class="line"><span>    { {1, "Geeks"}, {2, "For"}, {3, "C++"} };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    for (auto i : um)</span></span>
+<span class="line"><span>        cout &#x3C;&#x3C; i.first &#x3C;&#x3C; ": " &#x3C;&#x3C; i.second</span></span>
+<span class="line"><span>        &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h4 id="vs2015">vs2015</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Error (active)		no operator "&#x3C;&#x3C;" matches these operands	ConsoleApplication2	</span></span>
+<span class="line"><span>c:\Users\hp25nov\Documents\Visual Studio 2015\Projects\ConsoleApplication1\ConsoleApplication2\ConsoleApplication2.cpp	17</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>Error	C2059	syntax error: '['	ConsoleApplication2	</span></span>
+<span class="line"><span>c:\users\hp25nov\documents\visual studio 2015\projects\consoleapplication1\consoleapplication2\consoleapplication2.cpp	31</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container/unordered_map.html">std::unordered_map</a></li>
+<li><a href="https://www.geeksforgeeks.org/cpp/unordered_map-in-cpp-stl/">Unordered Map in C++ STL</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

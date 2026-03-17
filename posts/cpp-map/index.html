@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>map - C++</title></head> <body> <h1>map - C++</h1>  <p><em>C++98 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2022</li>
+</ul>
+<p>Maps are usually implemented as <a href="https://en.wikipedia.org/wiki/Red%E2%80%93black_tree">Red–black trees</a>.</p>
+<h3 id="example">example</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;iterator></span></span>
+<span class="line"><span>#include &#x3C;map></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>using namespace std;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// empty map container</span></span>
+<span class="line"><span>	map&#x3C;int, int> gquiz1;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// insert elements in random order</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(1, 40));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(2, 30));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(3, 60));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(4, 20));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(5, 50));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(6, 50));</span></span>
+<span class="line"><span>	gquiz1.insert(pair&#x3C;int, int>(7, 10));</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// printing map gquiz1</span></span>
+<span class="line"><span>	map&#x3C;int, int>::iterator itr;</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\nThe map gquiz1 is : \n";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tKEY\tELEMENT\n";</span></span>
+<span class="line"><span>	for (itr = gquiz1.begin(); itr != gquiz1.end(); ++itr) {</span></span>
+<span class="line"><span>		cout &#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->first</span></span>
+<span class="line"><span>			&#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->second &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// assigning the elements from gquiz1 to gquiz2</span></span>
+<span class="line"><span>	map&#x3C;int, int> gquiz2(gquiz1.begin(), gquiz1.end());</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// print all elements of the map gquiz2</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\nThe map gquiz2 after"</span></span>
+<span class="line"><span>		&#x3C;&#x3C; " assign from gquiz1 is : \n";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tKEY\tELEMENT\n";</span></span>
+<span class="line"><span>	for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {</span></span>
+<span class="line"><span>		cout &#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->first</span></span>
+<span class="line"><span>			&#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->second &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// remove all elements up to</span></span>
+<span class="line"><span>	// element with key=3 in gquiz2</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\ngquiz2 after removal of"</span></span>
+<span class="line"><span>		" elements less than key=3 : \n";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tKEY\tELEMENT\n";</span></span>
+<span class="line"><span>	gquiz2.erase(gquiz2.begin(), gquiz2.find(3));</span></span>
+<span class="line"><span>	for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {</span></span>
+<span class="line"><span>		cout &#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->first</span></span>
+<span class="line"><span>			&#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->second &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// remove all elements with key = 4</span></span>
+<span class="line"><span>	int num;</span></span>
+<span class="line"><span>	num = gquiz2.erase(4);</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\ngquiz2.erase(4) : ";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; num &#x3C;&#x3C; " removed \n";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tKEY\tELEMENT\n";</span></span>
+<span class="line"><span>	for (itr = gquiz2.begin(); itr != gquiz2.end(); ++itr) {</span></span>
+<span class="line"><span>		cout &#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->first</span></span>
+<span class="line"><span>			&#x3C;&#x3C; '\t' &#x3C;&#x3C; itr->second &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>	}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	// lower bound and upper bound</span></span>
+<span class="line"><span>	// for map gquiz1 key = 5</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "gquiz1.lower_bound(5) : "</span></span>
+<span class="line"><span>		&#x3C;&#x3C; "\tKEY = ";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; gquiz1.lower_bound(5)->first &#x3C;&#x3C; '\t';</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tELEMENT = "</span></span>
+<span class="line"><span>		&#x3C;&#x3C; gquiz1.lower_bound(5)->second &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "gquiz1.upper_bound(5) : "</span></span>
+<span class="line"><span>		&#x3C;&#x3C; "\tKEY = ";</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; gquiz1.upper_bound(5)->first &#x3C;&#x3C; '\t';</span></span>
+<span class="line"><span>	cout &#x3C;&#x3C; "\tELEMENT = "</span></span>
+<span class="line"><span>		&#x3C;&#x3C; gquiz1.upper_bound(5)->second &#x3C;&#x3C; endl;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>	return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container/map.html">std::map</a></li>
+<li><a href="https://www.geeksforgeeks.org/cpp/multimap-vs-map-in-c-stl-with-examples/">Multimap vs Map in C++ STL with Examples</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

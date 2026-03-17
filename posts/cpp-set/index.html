@@ -1,0 +1,59 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>set - C++</title></head> <body> <h1>set - C++</h1>  <p><em>C++98 standard</em></p> <p>2026-03-16</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: <a href="https://www.jetbrains.com.cn/en-us/clion/">CLion 2025.3.3</a></li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;algorithm></span></span>
+<span class="line"><span>#include &#x3C;iomanip></span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;iterator></span></span>
+<span class="line"><span>#include &#x3C;set></span></span>
+<span class="line"><span>#include &#x3C;string_view></span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>template&#x3C;typename T></span></span>
+<span class="line"><span>std::ostream&#x26; operator&#x3C;&#x3C;(std::ostream&#x26; out, const std::set&#x3C;T>&#x26; set)</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    if (set.empty())</span></span>
+<span class="line"><span>        return out &#x3C;&#x3C; "{}";</span></span>
+<span class="line"><span>    out &#x3C;&#x3C; "{ " &#x3C;&#x3C; *set.begin();</span></span>
+<span class="line"><span>    std::for_each(std::next(set.begin()), set.end(), [&#x26;out](const T&#x26; element)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        out &#x3C;&#x3C; ", " &#x3C;&#x3C; element;</span></span>
+<span class="line"><span>    });</span></span>
+<span class="line"><span>    return out &#x3C;&#x3C; " }";</span></span>
+<span class="line"><span>}</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    std::set&#x3C;int> set{1, 5, 3};</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; set &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    set.insert(2);</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; set &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    set.erase(1);</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; set &#x3C;&#x3C; "\n\n";</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    // Was the insertion successful?</span></span>
+<span class="line"><span>    if ( set.insert(3).second == false )</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "no insertion" &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    std::set&#x3C;int> keys{3, 4};</span></span>
+<span class="line"><span>    for (int key : keys)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        if (set.contains(key))</span></span>
+<span class="line"><span>            std::cout &#x3C;&#x3C; set &#x3C;&#x3C; " does contain " &#x3C;&#x3C; key &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>        else</span></span>
+<span class="line"><span>            std::cout &#x3C;&#x3C; set &#x3C;&#x3C; " doesn't contain " &#x3C;&#x3C; key &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    std::string_view word = "element";</span></span>
+<span class="line"><span>    std::set&#x3C;char> characters(word.begin(), word.end());</span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; "There are " &#x3C;&#x3C; characters.size() &#x3C;&#x3C; " unique characters in "</span></span>
+<span class="line"><span>              &#x3C;&#x3C; std::quoted(word) &#x3C;&#x3C; ":\n" &#x3C;&#x3C; characters &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/container/set.html">std::set</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/container/set/insert.html">insert - set</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/utility/pair.html">std::pair</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

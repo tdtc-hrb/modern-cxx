@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.5"><title>Virtual destructors</title></head> <body> <h1>Virtual destructors</h1>  <p><em>C++98 standard</em></p> <p>2026-01-12</p> <p>Written by: xiaobin</p> <ul>
+<li>IDE: VS2013</li>
+</ul>
+<p>You should always make your destructors virtual if you’re dealing with inheritance.</p>
+<h3 id="incorrect-result">Incorrect result</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>class Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    ~Base() // note: not virtual</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "Calling ~Base()\n";</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Derived: public Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>private:</span></span>
+<span class="line"><span>    int* m_array {};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    Derived(int length)</span></span>
+<span class="line"><span>      : m_array{ new int[length] }</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ~Derived() // note: not virtual (your compiler may warn you about this)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "Calling ~Derived()\n";</span></span>
+<span class="line"><span>        delete[] m_array;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    Derived* derived { new Derived(5) };</span></span>
+<span class="line"><span>    Base* base { derived };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    delete base;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Calling ~Base()</span></span></code></pre>
+<p>This is not the result we wanted!</p>
+<h3 id="correct-result">Correct result</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>class Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    ~Base() // note: not virtual</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "Calling ~Base()\n";</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class Derived: public Base</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>private:</span></span>
+<span class="line"><span>    int* m_array {};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>public:</span></span>
+<span class="line"><span>    Derived(int length)</span></span>
+<span class="line"><span>      : m_array{ new int[length] }</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    ~Derived() // note: not virtual (your compiler may warn you about this)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        std::cout &#x3C;&#x3C; "Calling ~Derived()\n";</span></span>
+<span class="line"><span>        delete[] m_array;</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    Derived* derived { new Derived(5) };</span></span>
+<span class="line"><span>    Base* base { derived };</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    delete base;</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    return 0;</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<p>output:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>Calling ~Derived()</span></span>
+<span class="line"><span>Calling ~Base()</span></span></code></pre>
+<p>This is the result we wanted!</p>
+<h4 id="rule">Rule</h4>
+<p>Whenever you are dealing with inheritance, you should make any explicit destructors virtual.</p>
+<h3 id="should-we-make-all-destructors-virtual">Should we make all destructors virtual?</h3>
+<p>This is a common question asked by new programmers. As noted in the top example, if the base class destructor isn’t marked as virtual,
+then the program is at risk for leaking memory if a programmer later deletes a base class pointer that is pointing to a derived object.
+One way to avoid this is to mark all your destructors as virtual. But should you?</p>
+<p>It’s easy to say yes, so that way you can later use any class as a base class — but there’s a performance
+penalty for doing so (a virtual pointer added to every instance of your class).
+So you have to balance that cost, as well as your intent.</p>
+<p>We’d suggest the following: If a class isn’t explicitly designed to be a base class,
+then it’s generally better to have no virtual members and no virtual destructor. The class can still be used via composition.
+If a class is designed to be used as a base class and/or has any virtual functions, then it should always have a virtual destructor.</p>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.learncpp.com/cpp-tutorial/virtual-destructors-virtual-assignment-and-overriding-virtualization">25.4 — Virtual destructors, virtual assignment, and overriding virtualization</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>
