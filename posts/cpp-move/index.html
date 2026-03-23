@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.8"><title>move - C++</title></head> <body> <h1>move - C++</h1>  <p><em>C++11 standard</em></p> <p>2026-03-17</p> <p>Written by: xiaobin</p> <p>Move semantics is a feature that allows our program to transfer ownership of resources (like memory, files, etc.)
+from one object to another instead of copying them. This results iin:</p>
+<ul>
+<li>Faster performance</li>
+<li>Less memory usage</li>
+<li>Better efficiency, especially with big objects (like std::vector, std::string, or file streams)</li>
+</ul>
+<h3 id="move-semantics-in-stl-containers">Move Semantics in STL Containers</h3>
+<p>One of the most practical and important uses of move semantics is in standard library containers like std::vector, std:: map, std:: set and others.
+These containers use move operations internally to improve performance and avoid unnecessary copying.</p>
+<p>STL containers like std::vector use move semantics to improve performance in two main cases:</p>
+<ol>
+<li>During Reallocation</li>
+</ol>
+<p>When a container grows and needs more space, it reallocates memory transfers existing elements.
+If the element type supports move, the container moves elements instead of copying them - making reallocation faster.</p>
+<ol start="2">
+<li>When Inserting Elements</li>
+</ol>
+<p>Move semantics are also used when inserting elements:</p>
+<ul>
+<li>push_back(std::move(x)) - Moves an existing object into the container.</li>
+<li>emplace_back(args…) - Constructs the object directly in-place, avoiding copies or moves.</li>
+</ul>
+<p>Example:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>std::string temp = "Alice";</span></span>
+<span class="line"><span>// Moves temp into vector</span></span>
+<span class="line"><span>names.push_back(std::move(temp)); </span></span>
+<span class="line"><span>// Constructs "Bob" directly in vector</span></span>
+<span class="line"><span>names.emplace_back("Bob");</span></span></code></pre>
+<p>These operations reduce unnecessary copying and make insertion more efficient.</p>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://en.cppreference.com/w/cpp/utility/move.html">std::move</a></li>
+<li><a href="https://www.geeksforgeeks.org/cpp/stdmove-in-utility-in-c-move-semantics-move-constructors-and-move-assignment-operators/">Move Semantics in C++</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.8"><title>parameters - template</title></head> <body> <h1>parameters - template</h1>  <p><em>C++ standard</em></p> <p>2026-03-20</p> <p>Written by: xiaobin</p> <p>Every template is parameterized by one or more template parameters.</p>
+<p>Each parameter in template-parameter-list (see <a href="https://en.cppreference.com/w/cpp/language/templates.html#Syntax">template declaration syntax</a>) belongs to one of the following categories:</p>
+<ul>
+<li>constant template parameter</li>
+<li>type template parameter</li>
+<li>template template parameter</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>#include &#x3C;array></span></span>
+<span class="line"><span>#include &#x3C;iostream></span></span>
+<span class="line"><span>#include &#x3C;numeric></span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>// simple constant template parameter</span></span>
+<span class="line"><span>template&#x3C;int N></span></span>
+<span class="line"><span>struct S { int a[N]; };</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>template&#x3C;const char*></span></span>
+<span class="line"><span>struct S2 {};</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>// complicated constant example</span></span>
+<span class="line"><span>template</span></span>
+<span class="line"><span>&#x3C;</span></span>
+<span class="line"><span>    char c,             // integral type</span></span>
+<span class="line"><span>    int (&#x26;ra)[5],       // lvalue reference to object (of array type)</span></span>
+<span class="line"><span>    int (*pf)(int),     // pointer to function</span></span>
+<span class="line"><span>    int (S&#x3C;10>::*a)[10] // pointer to member object (of type int[10])</span></span>
+<span class="line"><span>></span></span>
+<span class="line"><span>struct Complicated</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    // calls the function selected at compile time</span></span>
+<span class="line"><span>    // and stores the result in the array selected at compile time</span></span>
+<span class="line"><span>    void foo(char base)</span></span>
+<span class="line"><span>    {</span></span>
+<span class="line"><span>        ra[4] = pf(c - base);</span></span>
+<span class="line"><span>    }</span></span>
+<span class="line"><span>};</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>//  S2&#x3C;"fail"> s2;        // error: string literal cannot be used</span></span>
+<span class="line"><span>    char okay[] = "okay"; // static object with linkage</span></span>
+<span class="line"><span>//  S2&#x3C;&#x26;okay[0]> s3;      // error: array element has no linkage</span></span>
+<span class="line"><span>    S2&#x3C;okay> s4;          // works</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>int a[5];</span></span>
+<span class="line"><span>int f(int n) { return n; }</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>// C++20: NTTP can be a literal class type</span></span>
+<span class="line"><span>template&#x3C;std::array arr></span></span>
+<span class="line"><span>constexpr</span></span>
+<span class="line"><span>auto sum() { return std::accumulate(arr.cbegin(), arr.cend(), 0); }</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>// C++20: class template arguments are deduced at the call site</span></span>
+<span class="line"><span>static_assert(sum&#x3C;std::array&#x3C;double, 8>{3, 1, 4, 1, 5, 9, 2, 6}>() == 31.0);</span></span>
+<span class="line"><span>// C++20: NTTP argument deduction and CTAD</span></span>
+<span class="line"><span>static_assert(sum&#x3C;std::array{2, 7, 1, 8, 2, 8}>() == 28);</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>int main()</span></span>
+<span class="line"><span>{</span></span>
+<span class="line"><span>    S&#x3C;10> s; // s.a is an array of 10 int</span></span>
+<span class="line"><span>    s.a[9] = 4;</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    Complicated&#x3C;'2', a, f, &#x26;S&#x3C;10>::a> c;</span></span>
+<span class="line"><span>    c.foo('0');</span></span>
+<span class="line"><span> </span></span>
+<span class="line"><span>    std::cout &#x3C;&#x3C; s.a[9] &#x3C;&#x3C; a[4] &#x3C;&#x3C; '\n';</span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.modernescpp.com/index.php/alias-templates-and-template-parameters/">template-parameters</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/template_parameters.html">parameters - template</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>

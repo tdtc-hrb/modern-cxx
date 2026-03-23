@@ -1,0 +1,40 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width"><meta name="generator" content="Astro v6.0.8"><title>arguments - template</title></head> <body> <h1>arguments - template</h1>  <p><em>C++ standard</em></p> <p>2026-03-20</p> <p>Written by: xiaobin</p> <p>In order for a template to be instantiated, every template parameter must be replaced by a corresponding template argument.
+The arguments are either explicitly provided, deduced or defaulted.</p>
+<p>Each parameter in template-parameter-list (see template identifier syntax) belongs to one of the following categories:</p>
+<ul>
+<li>constant template argument</li>
+<li>type template argument</li>
+<li>template template argument</li>
+</ul>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>// templateTypeDeduction.cpp</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>template &#x3C;typename T></span></span>
+<span class="line"><span>void funcValue(T param) { }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>template &#x3C;typename T></span></span>
+<span class="line"><span>void funcReference(T&#x26; param) { }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>template &#x3C;typename T></span></span>
+<span class="line"><span>void funcUniversalReference(T&#x26;&#x26; param) { }</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>class RVal{};</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>int main() {</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>    const int lVal{};</span></span>
+<span class="line"><span>    const int&#x26; ref = lVal;</span></span>
+<span class="line"><span>  </span></span>
+<span class="line"><span>    funcValue(lVal);                  // (1)</span></span>
+<span class="line"><span>    funcValue(ref);</span></span>
+<span class="line"><span>  </span></span>
+<span class="line"><span>    funcReference(lVal);              // (2)</span></span>
+<span class="line"><span>  </span></span>
+<span class="line"><span>    funcUniversalReference(lVal);     // (3)</span></span>
+<span class="line"><span>    funcUniversalReference(RVal());</span></span>
+<span class="line"><span></span></span>
+<span class="line"><span>}</span></span></code></pre>
+<h2 id="ref">Ref</h2>
+<ul>
+<li><a href="https://www.modernescpp.com/index.php/template-arguments/">template-arguments</a></li>
+<li><a href="https://en.cppreference.com/w/cpp/language/template_arguments.html">args - template</a></li>
+</ul>  <footer> <a href="https://tdtc-hrb.github.io/blog-frontend">blog-frontend</a> <a href="https://tdtc-hrb.github.io/com-vc">com-vc</a> <a href="https://tdtc-hrb.github.io/css-tws">css-tws</a> <a href="https://tdtc-hrb.github.io/ops-win">ops-win</a> </footer> </body></html>
